@@ -26,15 +26,29 @@
 
 	<style>
   figure { margin:0 }
-  body { background:#EDE6D5 linear-gradient(#EDE6D5, #F5F5ED) repeat scroll 0% 0%; margin:0; color:#3F3B3B }
-	.title { text-align: center; font-size:64px; margin:0; padding:1.5em 0 1em }
+  body {  margin:0; color:#3F3B3B }
+	.header { background:#EDE6D5 linear-gradient(#EDE6D5, #F5F5ED) repeat scroll 0% 0%; overflow:hidden }
+	.title { text-align: center; font-size:64px; margin:0; padding:1.5em 0 0.5em }
   .container { max-width:700px; margin:0 auto }
 	.windows, .linux, .mac { display:none }
-	.box-download { margin: 10px auto 100px; text-align:center }
-	.box-download .screenshot { max-width:100%; box-shadow:0 10px 20px #777 }
+	.box-download { margin: 10px auto 0; text-align:center }
+	.box-download .screenshot { height:300px }
+	.box-download .screenshot img { max-width:100%; box-shadow:0 10px 20px #777 }
 	.box-download .btn-download { display:inline-block; padding:20px; border:0; background:#f1631b; text-decoration: none; color:#fff; }
 	.box-download .info { margin: 5px 0 50px }
 	.box-download .info a { text-decoration: none; color:#f1631b}
+	
+	.box-mode { padding: 100px 0 }
+	.box-mode .container { padding:100px 0 }
+	.box-mode figure img { width:300px }
+	.box-mode figure.left { float:left; margin:0 50px 0 -50px }
+	.box-mode figure.right { float:right; margin:0 -50px 0 50px }
+	.box-mode .container::after { content:" "; clear:both }
+	.box-mode a { color:#f1631b; text-decoration:none }
+
+	.box-etc { background:#aaa; padding:100px 0; color:#fff; text-align:center }
+	.box-etc p {}
+
   footer { background:#434342; color:#888; padding:15px 0; font-size:14px; height:22px }
   footer .right-pane { float:right }
   footer a { text-decoration: none; color:#888; margin-right:10px }
@@ -47,35 +61,75 @@
 	</style>
 </head>
 <body>
-  <h1 class="title">Tistory Editor</h1>
+	<div class="header">
+		<h1 class="title">Tistory Editor</h1>
 
-	<div class="container box-download">
-		<div class="windows">
-			<a class="btn-download" href="https://github.com/joostory/tistory-editor/releases/download/{{site.data.app.version}}/TistoryEditor.Setup.{{site.data.app.version}}.exe">Download Windows App</a>
+		<div class="container box-download">
+			<div class="windows">
+				<a class="btn-download" href="https://github.com/joostory/tistory-editor/releases/download/{{site.data.app.version}}/TistoryEditor.Setup.{{site.data.app.version}}.exe">Download Windows App</a>
+			</div>
+			<div class="linux">
+				<a class="btn-download" href="https://github.com/joostory/tistory-editor/releases/download/{{site.data.app.version}}/tistory-editor-{{site.data.app.version}}-x86_64.AppImage">Download Linux App</a>
+			</div>
+			<div class="mac">
+				<a class="btn-download" href="https://github.com/joostory/tistory-editor/releases/download/{{site.data.app.version}}/TistoryEditor-{{site.data.app.version}}-mac.zip">Download Mac App</a>
+			</div>
+
+			<div class="info">
+				last version: <a href="https://github.com/joostory/tistory-editor/releases/latest">{{ site.data.app.version }}</a>
+			</div>
+
+			<div class="screenshot">
+				<figure class="windows">
+					<img src="image/screenshot_windows.png">
+				</figure>
+
+				<figure class="linux">
+					<img src="image/screenshot_linux.png">
+				</figure>
+
+				<figure class="mac">
+					<img src="image/screenshot_mac.png">
+				</figure>
+			</div>
 		</div>
-		<div class="linux">
-			<a class="btn-download" href="https://github.com/joostory/tistory-editor/releases/download/{{site.data.app.version}}/tistory-editor-{{site.data.app.version}}-x86_64.AppImage">Download Linux App</a>
+	</div>
+
+	<div class="box-mode">
+		<div class="container">
+			<figure class="left">
+				<img src="image/tistory_editor_markdown.png">
+			</figure>
+
+			<h2>Markdown</h2>
+			<p>Makrdown 모드는 <a href="https://daringfireball.net/projects/markdown/">Markdown</a>으로 글을 쓸 수 있도록 syntax highlighting을 제공합니다. 티스토리의 글을 markdown으로 변환하여 편집 후 다시 html로 변환하여 저장합니다.</p>
 		</div>
-		<div class="mac">
-			<a class="btn-download" href="https://github.com/joostory/tistory-editor/releases/download/{{site.data.app.version}}/TistoryEditor-{{site.data.app.version}}-mac.zip">Download Mac App</a>
+
+		<div class="container">
+			<figure class="right">
+				<img src="image/tistory_editor_tinymce.png">
+			</figure>
+
+			<h2>Rich Text (Tinymce)</h2>
+			<p>Rich Text 모드의 하나로 <a href="https://www.tinymce.com">Tinymce</a>를 제공합니다. Tinymce는 대표적인 wysiwyg 에디터로 수많은 서비스에서 사용되고 있습니다. Tistory Editor는 이를 이용하여 최고의 글쓰기 환경을 제공하고자 노력하고 있습니다.</p>
 		</div>
 
-		<div class="info">
-			last version: <a href="https://github.com/joostory/tistory-editor/releases/latest">{{ site.data.app.version }}</a>
+		<div class="container">
+			<figure class="left">
+				<img src="image/tistory_editor_quill.png">
+			</figure>
+
+			<h2>Rich Text (Quill)</h2>
+			<p>Rich Text 모드의 하나로 <a href="https://quilljs.com">Quill</a>를 제공합니다. Quill은 html로 결과물을 관리하지 않는 API driven 에디터입니다. Tistory Editor는 Delta를 html로 변환하여 저장하며 역시 이를 이용해 최고의 글쓰기 환경을 제공하고자 노력하고 있습니다.</p>
 		</div>
+	</div>
 
-		<figure class="windows">
-    	<img class="screenshot" src="image/screenshot_windows.png">
-		</figure>
-
-		<figure class="linux">
-    	<img class="screenshot" src="image/screenshot_linux.png">
-		</figure>
-
-		<figure class="mac">
-    	<img class="screenshot" src="image/screenshot_mac.png">
-		</figure>
-  </div>
+	<div class="box-etc">
+		<div class="container">
+			<h2>주요 기능</h2>
+			<p>Drag&amp;Drop File upload, Clipboard File upload</p>
+		</div>
+	</div>
 
   <footer>
     <div class="container">
